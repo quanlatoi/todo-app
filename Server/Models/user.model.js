@@ -18,9 +18,9 @@ const UserSchema = new mongoose.Schema({
     avatar: {
         type: 'String',
     },
-    tasks: [{
+    tabs: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Task'
+        ref: 'Tab'
     } ]
 }, { collection: 'User', timestamps: true})
 

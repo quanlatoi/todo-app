@@ -16,9 +16,9 @@ const TaskSchema = new mongoose.Schema({
     position: {
         type: String
     },
-    author: {
+    Tab: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'Tab'
     }
 }, { collection: 'Task', timestamps: true})
 

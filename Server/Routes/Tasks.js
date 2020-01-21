@@ -3,7 +3,7 @@ const passport = require('passport')
 
 const { jwtStrategy } = require('../Utils/jwt')
 const { verifyJWT } = require('../Middlewares/Verify_Jwt')
-const { getListTasks, createTask } = require('../Controllers/Task')
+const { getListTasks, createTask, createTab } = require('../Controllers/Task')
 
 passport.use(jwtStrategy)
 
@@ -19,6 +19,17 @@ router.get(
     passport.authenticate('jwt', { session: false }),
     verifyJWT,
     getListTasks
+)
+/**
+ * @route     POST api/tasks/create-tab
+ * Desc       create task
+ * Access     Private + protect
+ */
+router.post(
+    '/create-tab', 
+    passport.authenticate('jwt', { session: false }),
+    verifyJWT,
+    createTab
 )
 /**
  * @route     POST api/tasks/create
