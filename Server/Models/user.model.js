@@ -21,7 +21,7 @@ const UserSchema = new mongoose.Schema({
     tabs: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Tab'
-    } ]
+    }]
 }, { collection: 'User', timestamps: true})
 
 const Users = mongoose.model('User', UserSchema);

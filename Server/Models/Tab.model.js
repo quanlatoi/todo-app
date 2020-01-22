@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
 const TabSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+    },
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'

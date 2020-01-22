@@ -3,8 +3,7 @@ const mongoose = require('mongoose')
 const TaskSchema = new mongoose.Schema({
     status: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     title: {
         type: String,
@@ -16,7 +15,7 @@ const TaskSchema = new mongoose.Schema({
     position: {
         type: String
     },
-    Tab: {
+    tab: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Tab'
     }

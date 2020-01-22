@@ -23,6 +23,7 @@ app.use('/api', apiLimiter)
 app.use('/api/authentic', routes.authentic)
 app.use('/api/user', routes.user)
 app.use('/api/tasks', routes.tasks)
+app.use('/api/tabs', routes.tabs)
 
 app.get('/', (req, res) => {
   res.send({ message: 'connected' })

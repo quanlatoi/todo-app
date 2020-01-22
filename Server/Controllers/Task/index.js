@@ -1,32 +1,9 @@
-const { taskModel, userModel, TabModel } = require('../../Models')
-
-async function createTab(req, res) {
-    const { _id } = res.local
-    try {
-        const newTab = new TabModel({
-            author: _id
-        })
-        const data = await newTab.save()
-        const user = await userModel.findOneAndUpdate({ _id }, { tabs: data._id });
-        console.log(user)
-        return res.json({
-            result: {
-                data
-            },
-            message: 'success'
-        })
-    } catch(err) {
-        console.log('ERRORS \n', err)
-        return res.status(500).json({
-            message: 'errors'
-        }) 
-    }
-}
+const { taskModel, tabModel } = require('../../Models')
 
 async function getListTasks(req, res) {
     try {
-        const { _id } = req.body
-        const data = await TabModel.findOne({ _id }).populate('tasks')
+        const { id } = req.query
+        const data = await tabModel.findOne({ _id: id }).populate('task')
         res.json({
             data
         })
@@ -41,6 +18,12 @@ async function getListTasks(req, res) {
 async function createTask(req, res) {
     try {
         const { status, title, description, position, tabId } = req.body
+        const tab = await tabModel.findOne({ _id: tabId })
+        if (!tab) {
+            return res.status(400).json({
+                messge: 'tab is not exist'
+            })
+        }
         const newTask = new taskModel({
             status,
             title,
@@ -49,8 +32,53 @@ async function createTask(req, res) {
             tab: tabId
         })
         const task = await newTask.save()
+        tab.task.push(task.id)
+        await tab.save()
         return res.json({
-            result: [{ task }],
+            result: task ,
+            message: 'success'
+        })
+    } catch(err) {
+        console.log('ERRORS \n', err)
+        return res.status(500).json({
+            message: 'errors'
+        })
+    }
+}
+
+async function updateTask(req, res) {
+    try {
+        const { status, title, description, position, taskId } = req.body
+        const update = {
+            status,
+            title,
+            description,
+            position
+        }
+        const newTask = await taskModel.findByIdAndUpdate(
+            {_id: taskId},
+            update
+        )
+        return res.json({
+            result: newTask,
+            message: 'success'
+        })
+    } catch(err) {
+        console.log('ERRORS \n', err)
+        return res.status(500).json({
+            message: 'errors'
+        })
+    }
+}
+
+async function deleteTask(req, res) {
+    try {
+        const { taskId } = req.body
+        const taskDeleted = await taskModel.findByIdAndDelete(
+            {_id: taskId}
+        )
+        return res.json({
+            result: taskDeleted,
             message: 'success'
         })
     } catch(err) {
@@ -62,7 +90,8 @@ async function createTask(req, res) {
 }
 
 module.exports = {
-    createTab,
     getListTasks,
-    createTask
+    createTask,
+    updateTask,
+    deleteTask
 }

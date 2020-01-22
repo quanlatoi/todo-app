@@ -3,58 +3,59 @@ const passport = require('passport')
 
 const { jwtStrategy } = require('../Utils/jwt')
 const { verifyJWT } = require('../Middlewares/Verify_Jwt')
-const { getListTasks, createTask, updateTask, deleteTask } = require('../Controllers/Task')
+const { createTab, updateTab, getListTab, deleteTab } = require('../Controllers/Tab')
 
 passport.use(jwtStrategy)
 
 const router = express.Router()
 
 /**
- * @route     GET api/tasks
- * Desc       get list tasks
+ * @route     GET api/tabs
+ * Desc       get list task
  * Access     Private + protect
  */
 router.get(
     '/', 
     passport.authenticate('jwt', { session: false }),
     verifyJWT,
-    getListTasks
+    getListTab
 )
 
 /**
- * @route     POST api/tasks/create
- * Desc       create task
+ * @route     POST api/tabs/create
+ * Desc       create tab
  * Access     Private + protect
  */
 router.post(
     '/create', 
     passport.authenticate('jwt', { session: false }),
     verifyJWT,
-    createTask
+    createTab
 )
 
 /**
- * @route     PUT api/tasks/update
- * Desc       update task
+ * @route     PUT api/tabs/update
+ * Desc       update tab
  * Access     Private + protect
  */
 router.put(
-    '/update', 
+    '/update',
     passport.authenticate('jwt', { session: false }),
     verifyJWT,
-    updateTask
+    updateTab
 )
 
 /**
- * @route     DELETE api/tasks/delete
- * Desc       delete task
+ * @route     DELETE api/tabs/create-tab
+ * Desc       delete tab
  * Access     Private + protect
  */
 router.delete(
     '/delete', 
     passport.authenticate('jwt', { session: false }),
     verifyJWT,
-    deleteTask
+    deleteTab
 )
+
 
 module.exports = router
