@@ -14,9 +14,9 @@ export const Status = [
 ]
 
 //lấy danh sách task từ database
-export const GET_LIST = 'GET_LIST';
-export const GET_SUCCESS = 'GET_SUCCESS';
-export const GET_FAILED = 'GET_FAILED';
+export const GET_LIST_TASK = 'GET_LIST_TASK';
+export const GET_LIST_TASK_SUCCESS = 'GET_LIST_TASK_SUCCESS';
+export const GET_LIST_TASK_FAILED = 'GET_LIST_TASK_FAILED';
 
 //thêm mới
 export const ADD_NEW_TASK = 'ADD_NEW_TASK';

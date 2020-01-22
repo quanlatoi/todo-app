@@ -5,7 +5,8 @@ async function getListTasks(req, res) {
         const { id } = req.query
         const data = await tabModel.findOne({ _id: id }).populate('task').select('task')
         res.json({
-            data
+            result: data,
+            message: 'success'
         })
     } catch(err) {
         console.log('ERRORS \n', err)

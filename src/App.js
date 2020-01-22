@@ -197,6 +197,7 @@ App.propTypes = {
 }
 
 const mapStateToProps = (state)=>{
+    console.log(state)
     return {
         data: state.listTasks
     }
