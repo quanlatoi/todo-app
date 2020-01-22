@@ -3,7 +3,7 @@ const { userModel, tabModel } = require('../../Models')
 async function getListTab(req, res) {
     try {
         const { _id } = res.local
-        const listTab = await userModel.findOne({ _id }).populate('tabs').select('-password')
+        const listTab = await userModel.findOne({ _id }).populate('tabs').select('tabs')
         return res.json({
             result: listTab,
             message: 'success'

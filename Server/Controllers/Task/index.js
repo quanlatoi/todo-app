@@ -3,7 +3,7 @@ const { taskModel, tabModel } = require('../../Models')
 async function getListTasks(req, res) {
     try {
         const { id } = req.query
-        const data = await tabModel.findOne({ _id: id }).populate('task')
+        const data = await tabModel.findOne({ _id: id }).populate('task').select('task')
         res.json({
             data
         })
