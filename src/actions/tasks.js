@@ -11,10 +11,10 @@ export const getListTaskSuccess = payload => {
     }
 }
 
-export const getListTaskFalse = data =>({
-    type: taskConstants.GET_LIST_TASK_FAILED,
-    payload: data
-})
+// export const getListTaskFalse = data =>({
+//     type: taskConstants.GET_LIST_TASK_FAILED,
+//     payload: data
+// })
 
 //search
 // export const findTask = keyWords => ({
@@ -31,18 +31,19 @@ export const getListTaskFalse = data =>({
 // }
 
 //thêm mới task
-// export const addNewTaskAction = (title, description)=>({
-//     type: taskConstants.ADD_NEW_TASK,
-//     payload: { 
-//         title,
-//         description
-//      }
-// })
+export const addNewTask = (title, description, position)=>({
+    type: taskConstants.ADD_NEW_TASK,
+    payload: { 
+        title,
+        description,
+        position,
+     }
+})
 
-// export const addNewTaskSuccess = data =>({
-//     type: taskConstants.ADD_NEW_TASK_SUCCESS,
-//     payload: data
-// })
+export const addNewTaskSuccess = data =>({
+    type: taskConstants.ADD_NEW_TASK_SUCCESS,
+    payload: data
+})
 
 // export const addNewTaskFailed = error =>({
 //     type: taskConstants.ADD_NEW_TASK_FAILED,
@@ -50,39 +51,36 @@ export const getListTaskFalse = data =>({
 // })
 
 // //sửa task
-// export const getEditTask = (task)=>({
-//     type: taskConstants.EDIT_TASK,
-//     payload: task
-// })
+export const getEditTask = (task)=>({
+    type: taskConstants.EDIT_TASK,
+    payload: task
+})
 
-// export const actionEditTask = (id, task)=>({
-//     type: taskConstants.ACTION_EDIT_TASK,
-//     payload: {
-//         id,
-//         task
-//     }
-// })
+export const actionEditTask = (id, task)=>({
+    type: taskConstants.ACTION_EDIT_TASK,
+    payload: task
+})
 
-// export const editTaskSuccess = data => ({
-//     type: taskConstants.EDIT_TASK_SUCCESS,
-//     payload: data
-// })
+export const editTaskSuccess = data => ({
+    type: taskConstants.EDIT_TASK_SUCCESS,
+    payload: data
+})
 
-// export const editTaslFailed = error =>({
-//     type: taskConstants.EDIT_TASK_FAILED,
-//     payload: error
-// })
+export const editTaslFailed = error =>({
+    type: taskConstants.EDIT_TASK_FAILED,
+    payload: error
+})
 
 // //Xóa task
-// export const deleteTask = id => ({
-//     type: taskConstants.DELETE_TASK,
-//     payload: id
-// })
+export const deleteTask = id => ({
+    type: taskConstants.DELETE_TASK,
+    payload: id
+})
 
-// export const deleteTaskSuccess = data => ({
-//     type: taskConstants.DELETE_TASK_SUCCESS,
-//     payload: data
-// })
+export const deleteTaskSuccess = data => ({
+    type: taskConstants.DELETE_TASK_SUCCESS,
+    payload: data
+})
 
 // export const deleteTaskFailed = error =>({
 //     type: taskConstants.DELETE_TASK_FAILED,
@@ -90,12 +88,12 @@ export const getListTaskFalse = data =>({
 // })
 
 // //sắp xếp task (kéo thả)
-// export const sortTasks = tasks => {
-//     return{
-//         type: taskConstants.SORT_TASK,
-//         payload: tasks
-//     }
-// }
+export const sortTasks = tasks => {
+    return{
+        type: taskConstants.SORT_TASK,
+        payload: tasks
+    }
+}
 
 // export const saveTaskAfterSort = tasks => {
 //     return {

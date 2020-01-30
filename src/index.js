@@ -1,20 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 import {Provider} from "react-redux";
 
+import * as serviceWorker from './serviceWorker';
 import configureStore from './redux/configureStore';
-import LoadEffect from './components/Loading/index';
-import Modal from './components/TaskForm/index'
+import NextApp from './router';
+import Notification from './components/Notification'
 
 const store = configureStore();
 
 ReactDOM.render(
     <Provider store={store}>
-        <LoadEffect />
-        <App />
-        <Modal />
+        <NextApp />
+        <Notification />
     </Provider>,
     document.getElementById('root')
 );

@@ -8,7 +8,7 @@ passport.use(jwtStrategy)
 module.exports.verifyJWT = async (req, res, next) => {
     try {
         const { id } = req.authInfo
-        const userData = await userModel.findOne({ _id: id})
+        const userData = await userModel.findOne({ _id: id}).select('-password')
         if (userData) {
             res.local = userData
             return next();

@@ -72,9 +72,9 @@ async function register(req, res) {
         }
         const avatar = file.name ? file.name : null
         bcrypt.genSalt(10, (err, salt) => {
-            if (err) throw err
+            if (err) res.status(500).json({ message: 'errors' })
             bcrypt.hash(password, salt, async (err, hash) => {
-                if (err) throw err
+                if (err) res.status(500).json({ message: 'errors' })
                 const newUser = new userModel({
                     username,
                     password: hash,
@@ -95,13 +95,11 @@ async function register(req, res) {
         })
 
     } catch(err) {
-        if(err) {
-            console.log('ERROS \n', err)
-            res.status(500)
-            .json({
-                message: 'errors'
-            })
-        }
+        console.log('ERROS \n', err)
+        res.status(500)
+        .json({
+            message: 'errors'
+        })
     }
 }
 

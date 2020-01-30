@@ -28,14 +28,14 @@ export const useStyles = makeStyles({
         margin: 0,
         textTransform: 'uppercase'
     },
-    rootButton: {
-        display: 'flex',
-        justifyContent : 'flex-end'
-    },
-    button: {
-        padding: '.4em 1em',
-        margin: '.2em'
-    },
+    // rootButton: {
+    //     display: 'flex',
+    //     justifyContent : 'flex-end'
+    // },
+    // button: {
+    //     padding: '.4em 1em',
+    //     margin: '.2em'
+    // },
     icon: {
         float: "right"
     }

@@ -49,17 +49,14 @@ async function createTask(req, res) {
 
 async function updateTask(req, res) {
     try {
-        const { status, title, description, position, taskId } = req.body
+        const { status, title, description, position, _id } = req.body
         const update = {
             status,
             title,
             description,
             position
         }
-        const newTask = await taskModel.findByIdAndUpdate(
-            {_id: taskId},
-            update
-        )
+        const newTask = await taskModel.findByIdAndUpdate(_id, update, {new : true})
         return res.json({
             result: newTask,
             message: 'success'

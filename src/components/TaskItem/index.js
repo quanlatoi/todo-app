@@ -38,10 +38,10 @@ function TaskItems(props){
             a(task);
         }
         const handeleDelete = ()=>{
-            b(task.id)
+            b(task._id)
         }
         return (
-            <Draggable draggableId={task.id} index={index} key={task.id} className={classes.root1}>
+            <Draggable draggableId={task._id} index={index} key={task._id} className={classes.root1}>
                 {provided =>(
                     <Card className={classes.Card} 
                         {...provided.draggableProps}

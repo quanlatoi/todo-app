@@ -8,14 +8,14 @@ const requestRegister = user => callAPI('authentic/register', 'POST', user);
 // api tab
 const fetchListTab = () => callAPI('tabs');
 const requestCreateTab = nameTab => callAPI('tabs/create', 'POST', nameTab);
-const requestUpdateTab = nameTab => callAPI('tabs/create', 'PUT', nameTab);
-const requestDeleteTab = tabId => callAPI('tabs/create', 'DELETE', tabId);
+const requestUpdateTab = nameTab => callAPI('tabs/update', 'PUT', nameTab);
+const requestDeleteTab = tabId => callAPI('tabs/delete', 'DELETE', tabId);
 
 // api task
 const fetchListTasks = tabId => callAPI(`tasks?id=${tabId}`);
 const requestCreateTask = tasks => callAPI('tasks/create', 'POST', tasks);
-const requestUpdateTask = tasks => callAPI('tasks/create', 'PUT', tasks);
-const requestDeleteTask = taskId => callAPI('tasks/create', 'DELETE', taskId);
+const requestUpdateTask = tasks => callAPI('tasks/update', 'PUT', tasks);
+const requestDeleteTask = taskId => callAPI('tasks/delete', 'DELETE', taskId);
 
 export {
     requestLogin,

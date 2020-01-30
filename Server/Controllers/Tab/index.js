@@ -30,9 +30,7 @@ async function createTab(req, res) {
         user.tabs.push(data._id)
         await user.save()
         return res.json({
-            result: {
-                data
-            },
+            result: data,
             message: 'success'
         })
     } catch(err) {
@@ -49,8 +47,7 @@ async function updateTab(req, res) {
         const update = {
             name
         }
-        const newTab = await tabModel.findByIdAndUpdate({ _id: tabId }, update)
-        console.log(newTab)
+        const newTab = await tabModel.findByIdAndUpdate(tabId, update, {new : true})
         return res.json({
             result: newTab,
             message: 'success'
