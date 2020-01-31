@@ -1,4 +1,8 @@
-#wrapper-button{
-    margin: 8px 32px;
-    
+*, body {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    box-sizing: border-box;
+    line-height: 1.5;
 }

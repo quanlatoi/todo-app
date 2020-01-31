@@ -10,8 +10,8 @@ import Login from './Login';
 function NextApp() {
 
     history.listen((location, action) => {
-        // console.log(location)
-        // console.log(action)
+        console.log(location)
+        console.log(action)
     })
 
     return (

@@ -25,9 +25,10 @@ function* watchLogin() {
 
 function loginSuccess() {
     let { from } = history.location.state || { from: { pathname: "/login" } };
+    // history.push('/');
     history.replace(from);
     // if (history.location.pathname === '/login') {
-    //     history.replace()
+        // history.push('/');
     // }
 }
 
