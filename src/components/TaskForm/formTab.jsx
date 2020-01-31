@@ -43,10 +43,8 @@ function form(props) {
         tabActionCreator,
         tabSelection,
     } = props;
-    console.log(props)
     const { hideModal } = modalActionsCreator;
     const { createTab, updateTab } = tabActionCreator;
-    console.log(props)
     const submitForm = data => {
         if (tabSelection) {
             updateTab(tabSelection._id, data);

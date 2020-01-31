@@ -22,10 +22,8 @@ import {
     deleteTaskSuccess
 } from '../actions/tasks';
 
-function* getListTask(payload) {
-    // const { id } = payload;
-    const id = '5e2a740c9a2ef71814c265be';
-    const res = yield call(fetchListTasks, id);
+function* getListTask({ payload }) {
+    const res = yield call(fetchListTasks, payload);
     const { data } = res;
     if (data.message === 'success') {
         yield put(getListTaskSuccess(data.result));
@@ -41,7 +39,6 @@ function* watchGetListTask() {
 function* createTask({ payload }) {
     payload.position = 1;
     payload.status = 'col-1';
-    payload.tabId = '5e2a740c9a2ef71814c265be';
     const res = yield call(requestCreateTask, payload);
     const { result, message } = res.data;
     if (message === 'success') {
@@ -56,6 +53,7 @@ function* watchCreateTask() {
 }
 
 function* updateTask({ payload }) {
+    console.log(payload)
     const res = yield call(requestUpdateTask, payload);
     const { result, message } = res.data;
     console.log(result)

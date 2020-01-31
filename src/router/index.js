@@ -19,7 +19,7 @@ function NextApp() {
             <Switch>
                 <Route path='/login' component={Login} />
                 <PrivateRoute exact path='/' component={AsyncFunction(() => import('../components/Dashboard'))} />
-                <Route path='/tasks/:id' component={AsyncFunction(() => import('../components/Home'))} />
+                <PrivateRoute path='/tasks/:id' component={AsyncFunction(() => import('../components/Home'))} />
                 <Route component={PageNotFound} />
             </Switch>
         </Router>

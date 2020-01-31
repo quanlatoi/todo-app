@@ -1,7 +1,8 @@
 import * as taskConstants from '../constants/index'
 
-export const getListTask = ()=>({
+export const getListTask = tabId => ({
     type: taskConstants.GET_LIST_TASK,
+    payload: tabId
 })
 
 export const getListTaskSuccess = payload => {
@@ -31,12 +32,11 @@ export const getListTaskSuccess = payload => {
 // }
 
 //thêm mới task
-export const addNewTask = (title, description, position)=>({
+export const addNewTask = ( task, position)=>({
     type: taskConstants.ADD_NEW_TASK,
     payload: { 
-        title,
-        description,
         position,
+        ...task
      }
 })
 
@@ -51,12 +51,14 @@ export const addNewTaskSuccess = data =>({
 // })
 
 // //sửa task
-export const getEditTask = (task)=>({
-    type: taskConstants.EDIT_TASK,
-    payload: task
-})
+export const getEditTask = (task)=>{
+    return {
+        type: taskConstants.EDIT_TASK,
+        payload: task
+    }
+}
 
-export const actionEditTask = (id, task)=>({
+export const actionEditTask = (task)=>({
     type: taskConstants.ACTION_EDIT_TASK,
     payload: task
 })

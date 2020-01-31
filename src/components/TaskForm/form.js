@@ -40,13 +40,19 @@ function form(props){
     const { handleSubmit, taskActionsCreator, taskEditing, modalActionsCreator } = props;
     const { hideModal } = modalActionsCreator;
     const { addNewTask, actionEditTask, } = taskActionsCreator;
+    const getTabId = window.location.href.split('/')[window.location.href.split('/').length - 1];
+    
     const submitForm = (data)=>{
-        const { title, description } = data
         if(taskEditing){
-            actionEditTask(taskEditing._id, data)
+            const { status, position, _id } = taskEditing;
+            data.status = status;
+            data.position = position;
+            data._id = _id;
+            actionEditTask(data);
         }
         else{
-            addNewTask(title, description)
+            data.tabId = getTabId;
+            addNewTask(data);
         }
         hideModal()
     }
@@ -87,10 +93,11 @@ function form(props){
 const mapStateToProps = state =>{
     const { task } = state.listTasks;
     return {
-        initalValues: {
-            title: task && task.title,
-            description: task && task.description
-        }
+        initialValues: {
+            title: task ? task.title : '',
+            description: task ? task.description : ''
+        },
+        taskEditing: task
     }
 }
 
@@ -102,6 +109,6 @@ const disPatchToProps = dispatch =>{
 }
 
 export default connect(mapStateToProps, disPatchToProps)(reduxForm({
-    form: 'FORM',
+    form: 'task',
     validate
 })(form));

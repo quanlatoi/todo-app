@@ -13,9 +13,9 @@ const requestDeleteTab = (tabId, token) => callAPI('tabs/delete', token, 'DELETE
 
 // api task
 const fetchListTasks = tabId => callAPI(`tasks?id=${tabId}`);
-const requestCreateTask = (tasks, token) => callAPI('tasks/create', token,'POST', tasks);
-const requestUpdateTask = tasks => callAPI('tasks/update', 'PUT', tasks);
-const requestDeleteTask = taskId => callAPI('tasks/delete', 'DELETE', taskId);
+const requestCreateTask = (tasks, token) => callAPI('tasks/create', token, 'POST', tasks);
+const requestUpdateTask = (tasks, token) => callAPI('tasks/update', token, 'PUT', tasks);
+const requestDeleteTask = (taskId, token) => callAPI('tasks/delete', token,'DELETE', taskId);
 
 export {
     requestLogin,
