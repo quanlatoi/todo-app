@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -10,7 +10,9 @@ function Dashboard(props) {
     const { tabActionCreator, token } = props;
     const { getListTab } = tabActionCreator;
     console.log(props);
-    getListTab(token);
+    useEffect(() => {
+        getListTab(token);
+    }, [])
     return (
         <div>
             <HeaderDashBoard />
