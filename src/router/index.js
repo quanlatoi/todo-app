@@ -8,12 +8,18 @@ import { AsyncFunction } from '../utils/asyncFunction';
 import Login from './Login';
 
 function NextApp() {
+
+    history.listen((location, action) => {
+        // console.log(location)
+        // console.log(action)
+    })
+
     return (
         <Router history={history}>
             <Switch>
                 <Route path='/login' component={Login} />
                 <PrivateRoute exact path='/' component={AsyncFunction(() => import('../components/Dashboard'))} />
-                <Route path='/home' component={AsyncFunction(() => import('../components/Home'))} />
+                <Route path='/tasks/:id' component={AsyncFunction(() => import('../components/Home'))} />
                 <Route component={PageNotFound} />
             </Switch>
         </Router>

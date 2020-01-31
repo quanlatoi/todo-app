@@ -11,8 +11,8 @@ function* login({ payload }) {
     const { result, message } = res.data;
     if (message === 'success') {
         yield all([
+            put(setLocal('token',result.jwt)),
             put(loginRequestSuccess(result)),
-            put(setLocal('token',result.jwt))
         ])
     } else {
         yield put(loginRequestFailed(message))
@@ -25,7 +25,7 @@ function* watchLogin() {
 
 function loginSuccess() {
     let { from } = history.location.state || { from: { pathname: "/login" } };
-        history.replace(from);
+    history.replace(from);
     // if (history.location.pathname === '/login') {
     //     history.replace()
     // }

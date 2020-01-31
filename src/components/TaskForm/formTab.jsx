@@ -43,12 +43,13 @@ function form(props) {
         tabActionCreator,
         tabSelection,
     } = props;
+    console.log(props)
     const { hideModal } = modalActionsCreator;
-    const { createTab, getInfoToUpdateTab } = tabActionCreator;
+    const { createTab, updateTab } = tabActionCreator;
     console.log(props)
     const submitForm = data => {
         if (tabSelection) {
-            getInfoToUpdateTab(tabSelection._id, data);
+            updateTab(tabSelection._id, data);
         } else {
             createTab(data.nameTab)
         }
@@ -82,8 +83,9 @@ const mapStateToProps = state => {
     const { tabSelection } = state.tabReducer;
     return {
         initialValues: {
-            nameTab: tabSelection.name
-        }
+            nameTab: tabSelection? tabSelection.name : ''
+        },
+        tabSelection
     }
 }
 

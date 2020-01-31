@@ -47,7 +47,7 @@ async function updateTab(req, res) {
         const update = {
             name
         }
-        const newTab = await tabModel.findByIdAndUpdate(tabId, update, {new : true})
+        const newTab = await tabModel.findByIdAndUpdate(tabId, update, {new: true});
         return res.json({
             result: newTab,
             message: 'success'

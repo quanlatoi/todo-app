@@ -10,7 +10,7 @@ catch(e) {
 }
 
 const initialState = {
-    token: null,
+    token: localStorage.getItem('token') || null,
 }
 
 export default function(state = initialState, action) {
@@ -18,11 +18,11 @@ export default function(state = initialState, action) {
         localStorage.setItem(action.key, action.value)
         return {...state, [action.key]: action.value }
     }
-
-    if (action.type === LOCALSTORAGE_CLEAR) {
+    else if (action.type === LOCALSTORAGE_CLEAR) {
         localStorage.clear()
         return { jwt: null }
     }
-
-    return state
+    else {
+        return state
+    }
 }

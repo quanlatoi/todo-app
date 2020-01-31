@@ -11,6 +11,7 @@ import {
   List,
   Grid
 } from "@material-ui/core";
+import { Link } from 'react-router-dom';
 
 import { useStyles } from './styles';
 import ListItemSecondary from './ListItemSecondaryAction';
@@ -29,18 +30,23 @@ function Content(props) {
 	const elementTab = listTab.map(tab => {
 		return (
       <Grid key={tab._id} item xs={12} sm={4} md={3}>
-        <ListItem className={classes.root} >
-          <ListItemText>
-              <CardContent>
-                <Typography className={classes.title}>
-                  {tab.name}
-                </Typography>
-                <br />
-                <Typography className={classes.time}>
-                  {moment(tab.createdAt).format('YYYY/MM/DD')}
-                </Typography>
-              </CardContent>
-          </ListItemText>
+        <ListItem className={classes.root}>
+          <Link to={{
+            pathname: `tasks/${tab._id}`,
+            state: { fromDashboard: true}
+          }}>
+            <ListItemText>
+                <CardContent>
+                  <Typography className={classes.title}>
+                    {tab.name}
+                  </Typography>
+                  <br />
+                  <Typography className={classes.time}>
+                    {moment(tab.createdAt).format('YYYY/MM/DD')}
+                  </Typography>
+                </CardContent>
+            </ListItemText>
+          </Link>
           <ListItemSecondary
             tab={tab}
             deleteTab={deleteTab}

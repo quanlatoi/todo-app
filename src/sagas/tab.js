@@ -18,8 +18,8 @@ import {
     deleteTabSuccess
 } from '../actions/tab'
 
-function* getListTab() {
-    const res = yield call(fetchListTab);
+function* getListTab({token}) {
+    const res = yield call(fetchListTab, token);
     const { result, message } = res.data;
     if (message === 'success') {
         yield put(getListTabSuccess(result))
@@ -33,6 +33,7 @@ function* watchGetListTab() {
 }
 
 function* createTab({ payload }) {
+    console.log(payload)
     const res = yield call(requestCreateTab, payload);
     const { result, message } = res.data;
     if (message === 'success') {

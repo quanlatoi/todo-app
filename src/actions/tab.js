@@ -10,8 +10,8 @@ import {
     DELETE_TAB_SUCEESS
 } from '../constants';
 
-const getListTab = () => {
-    return { type: GET_LIST_TAB }
+const getListTab = (token) => {
+    return { type: GET_LIST_TAB, token}
 }
 
 const getListTabSuccess = payload => ({
@@ -22,8 +22,7 @@ const getListTabSuccess = payload => ({
 const createTab = (nameTab, idAuthor) => ({
     type: CREATE_TAB,
     payload: {
-        nameTab,
-        idAuthor
+        nameTab
     }
 })
 
@@ -32,9 +31,12 @@ const createTabSuccess = data => ({
     payload: data
 })
 
-const updateTab = tab => ({
+const updateTab = (id, tab) => ({
     type: UPDATE_TAB,
-    payload: tab
+    payload: {
+        tabId: id,
+        name: tab.nameTab
+    }
 })
 
 const getInfoToUpdateTab = tab => ({

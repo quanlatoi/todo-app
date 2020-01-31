@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -7,11 +7,10 @@ import HeaderDashBoard from './HeaderDashBoard';
 import Content from './Content';
 
 function Dashboard(props) {
-    const { tabActionCreator } = props;
+    const { tabActionCreator, token } = props;
     const { getListTab } = tabActionCreator;
-    useEffect(() => {
-        getListTab();
-    }, []);
+    console.log(props);
+    getListTab(token);
     return (
         <div>
             <HeaderDashBoard />
@@ -20,10 +19,17 @@ function Dashboard(props) {
     )
 }
 
+const mapStateToProps = state => {
+    const { token } = state.localStorageReducer;
+    return {
+        token
+    }
+}
+
 const mapDispathToProps = dispatch => {
     return {
         tabActionCreator: bindActionCreators(tabAction, dispatch),
     }
 }
 
-export default connect(null, mapDispathToProps)(Dashboard);
+export default connect(mapStateToProps, mapDispathToProps)(Dashboard);

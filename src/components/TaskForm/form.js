@@ -88,8 +88,8 @@ const mapStateToProps = state =>{
     const { task } = state.listTasks;
     return {
         initalValues: {
-            title: task.title,
-            description: task.description
+            title: task && task.title,
+            description: task && task.description
         }
     }
 }
