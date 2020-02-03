@@ -12,6 +12,7 @@ const useStyles = makeStyles({
     ul: {
         display: 'flex',
         flexWrap: 'wrap',
+        width: 'auto'
     },
 })
 

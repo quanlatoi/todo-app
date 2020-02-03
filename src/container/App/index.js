@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { CssBaseline, Container } from '@material-ui/core';
 
 import { useStyles } from './styles';
 import LoadEffect from '../../components/Loading';
@@ -9,11 +10,14 @@ function App(props) {
     const { component } = props;
 
     return (
-        <div className={classes.root}>
-           <LoadEffect />
-            {component}
-            <Modal />
-        </div>
+        <Fragment>
+            <CssBaseline />
+            <Container maxWidth='xl'>
+                <LoadEffect />
+                {component}
+                <Modal />
+            </Container>
+        </Fragment>
     )
 }
 

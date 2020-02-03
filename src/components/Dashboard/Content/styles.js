@@ -21,7 +21,7 @@ export const useStyles = makeStyles( theme =>({
             marginRight: 8,
             marginBottom: 8,
         },
-        [theme.breakpoints.only('md')]: {
+        [theme.breakpoints.up('md')]: {
             width: '32%',
             marginRight: 8,
             marginBottom: 8,

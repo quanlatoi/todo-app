@@ -28,33 +28,14 @@ function HeaderDashBoard(props) {
 		changeTitle("Thêm Tab")
 		changeContent(<TabForm />)
 	}
-	return (
-		<Grid item xs={12}>
-			<ListItem>
-				<Button onClick={openForm} className={classes.button}>
-					<CardContent className={classes.cardContent}>
-						<Typography>
-							<Add />
-						</Typography>
-						<Typography>Tạo mới bảng</Typography>
-					</CardContent>
-				</Button>
-			</ListItem>
-			{/* <Box id='wrapper-button'>
-                <Button  
-                    style={{padding: 10}}
-                    variant="contained"
-                    color='primary'
-                    size='small'
-                    onClick={openForm}
-                >
-                    <Add />Thêm mới Tab
-                </Button>
-            </Box> */}
-			{/* <Grid className={classes.wrapperSearch} item xs={6}>
-                { renderSearching() }
-            </Grid> */}
-		</Grid>
+    return (
+        <ListItem className={classes.li}>
+            <Button onClick={openForm} className={classes.button}>
+                <CardContent className={classes.cardContent}>
+                    <Typography>Tạo mới bảng</Typography>
+                </CardContent>
+            </Button>
+        </ListItem>
 	)
 }
 
