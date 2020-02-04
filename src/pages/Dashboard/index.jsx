@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
     ul: {
         display: 'flex',
         flexWrap: 'wrap',
-        width: 'auto'
+        width: '100%'
     },
     drawerPaper: {
         width: 'calc(30% - 5px)',
