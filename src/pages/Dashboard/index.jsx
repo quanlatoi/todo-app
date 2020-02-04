@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { List, Grid, Card } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { List, Grid } from '@material-ui/core';
 
 import * as tabAction from '../../actions/tab';
 import ButtonAddTab from './ButtonAddTab';
@@ -55,6 +55,7 @@ function Dashboard(props) {
             <Grid item xs={11} sm={9} className={classes.allTab}>
                 <div className={classes.toolbar} />
                 <Grid container direction='row'>
+                    <h2>Danh sách bảng</h2>
                     <List className={classes.ul}>
                         <Content />
                         <ButtonAddTab />
