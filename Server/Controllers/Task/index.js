@@ -87,9 +87,38 @@ async function deleteTask(req, res) {
     }
 }
 
+async function sortTask(req, res) {
+    try {
+        console.log(req.body)
+        const result = await taskModel.bulkWrite(req.body.map(objData => {
+            const { _id, ...dataUpdate } = objData
+            return {
+                updateOne: {
+                    filter: { _id: _id },
+                    update: {
+                        $setOnInsert: { _id: _id },
+                        $set: dataUpdate,
+                    },
+                    upsert: true,
+                }
+            }
+        }))
+        return res.json({
+            result,
+            message: 'success'
+        })
+    } catch(err) {
+        console.log('ERRORS \n', err)
+        return res.status(500).json({
+            message: 'errors'
+        })
+    }
+}
+
 module.exports = {
     getListTasks,
     createTask,
     updateTask,
-    deleteTask
+    deleteTask,
+    sortTask
 }

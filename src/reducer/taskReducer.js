@@ -3,7 +3,8 @@ import {
     ADD_NEW_TASK_SUCCESS,
     EDIT_TASK,
     EDIT_TASK_SUCCESS,
-    DELETE_TASK_SUCCESS
+    DELETE_TASK_SUCCESS,
+    SORT_TASK_SUCCESS
 } from '../constants/index'
 
 const initialState = {
@@ -52,12 +53,12 @@ const getListTasks = (state = initialState, action)=>{
             };
         }
         // //sort
-        // // case types.SORT_TASK_SUCCESS:
-        // //     console.log(action.payload)
-        // //     return {
-        // //         data: state.data,
-        // //         task: action.data
-        // //     }
+        case SORT_TASK_SUCCESS:
+            console.log(action.payload)
+            return {
+                ...state,
+                data: action.payload.tasks2.concat( action.payload.update),
+            }
         // case types.SORT_TASK:
         //     return {
         //         data: action.payload

@@ -117,14 +117,14 @@ import { all } from 'redux-saga/effects';
 // }
 
 // function* actionSaveTaskHadSort({ payload }){
-//     let res = []
-//     for(let i = 0; i < payload.length; i++){
-//         res.push(yield call(callAPI_sortTask, payload[i].id, payload[i]));
-//     }
+    // let res = []
+    // for(let i = 0; i < payload.length; i++){
+    //     res.push(yield call(callAPI_sortTask, payload[i].id, payload[i]));
+    // }
 
-//     if(res[0].status === STATUS_CODE.SUCCESS && res[1].status === STATUS_CODE.SUCCESS){
-//         yield put(sortTasksSuccess(res[1].data))
-//     }
+    // if(res[0].status === STATUS_CODE.SUCCESS && res[1].status === STATUS_CODE.SUCCESS){
+    //     yield put(sortTasksSuccess(res[1].data))
+    // }
 // }
 
 // function* rootSaga(){

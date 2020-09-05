@@ -3,7 +3,7 @@ const passport = require('passport')
 
 const { jwtStrategy } = require('../Utils/jwt')
 const { verifyJWT } = require('../Middlewares/Verify_Jwt')
-const { getListTasks, createTask, updateTask, deleteTask } = require('../Controllers/Task')
+const { getListTasks, createTask, updateTask, deleteTask, sortTask } = require('../Controllers/Task')
 
 passport.use(jwtStrategy)
 
@@ -55,6 +55,18 @@ router.delete(
     passport.authenticate('jwt', { session: false }),
     verifyJWT,
     deleteTask
+)
+
+/**
+ * @route     SORT api/tasks/sort
+ * Desc       sort task
+ * Access     Private + protect
+ */
+router.put(
+    '/sort', 
+    passport.authenticate('jwt', { session: false }),
+    verifyJWT,
+    sortTask
 )
 
 module.exports = router

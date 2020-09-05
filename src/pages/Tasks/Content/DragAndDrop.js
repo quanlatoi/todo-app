@@ -1,7 +1,6 @@
 import { Status } from '../../../constants';
-import { sortTasks } from '../../../actions/tasks';
 
-function onDragEnd(result, itemTodos) {
+function onDragEnd(result, itemTodos, taskActionsCreator) {
     const {
         destination,
         source,
@@ -45,11 +44,14 @@ function onDragEnd(result, itemTodos) {
             ...remainingItems.slice(0, destination.index),
             movedItem,
             ...remainingItems.slice(destination.index)
-        ]
-        reoderItems.forEach((item, index) => {
-            return item.position = index
+        ];
+        const result = reoderItems.map((item, index) => {
+            return {
+                ...item,
+                position: index
+            }
         })
-        sortTasks(tasks2.concat(reoderItems));
+        taskActionsCreator.sortTasks(result, tasks2);
         return;
     }
     // kéo thả giữa 2 task khác nhau
@@ -57,7 +59,10 @@ function onDragEnd(result, itemTodos) {
     d[0]['status'] = destination.droppableId;
     tasks2.splice(destination.index, 0, d[0]);
     const newData = tasks2.concat(tasks1);
-    sortTasks(newData);
+    console.log(tasks2)
+    console.log(d)
+    console.log(tasks1)
+    taskActionsCreator.sortTasks(newData, []);
     return;
 }
 

@@ -16,6 +16,7 @@ const fetchListTasks = tabId => callAPI(`tasks?id=${tabId}`);
 const requestCreateTask = (tasks, token) => callAPI('tasks/create', token, 'POST', tasks);
 const requestUpdateTask = (tasks, token) => callAPI('tasks/update', token, 'PUT', tasks);
 const requestDeleteTask = (taskId, token) => callAPI('tasks/delete', token,'DELETE', taskId);
+const requestSortTask = (task, token) => callAPI('tasks/sort', token, 'PUT', task)
 
 export {
     requestLogin,
@@ -28,4 +29,5 @@ export {
     requestCreateTask,
     requestUpdateTask,
     requestDeleteTask,
+    requestSortTask
 }

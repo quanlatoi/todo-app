@@ -1,4 +1,4 @@
-import { fork, call, put, all, takeEvery } from 'redux-saga/effects';
+import { fork, call, put, all, takeEvery, select } from 'redux-saga/effects';
 
 import {
     GET_LIST_TASK,
@@ -7,19 +7,23 @@ import {
     ADD_NEW_TASK_FAILED,
     ACTION_EDIT_TASK,
     EDIT_TASK_FAILED,
-    DELETE_TASK
+    DELETE_TASK,
+    SORT_TASK,
+    STATUS_CODE
 } from '../constants';
 import {
     fetchListTasks,
     requestCreateTask,
     requestUpdateTask,
-    requestDeleteTask
+    requestDeleteTask,
+    requestSortTask
 } from './service';
 import { 
     getListTaskSuccess,
     addNewTaskSuccess,
     editTaskSuccess,
-    deleteTaskSuccess
+    deleteTaskSuccess,
+    sortTasksSuccess
 } from '../actions/tasks';
 
 function* getListTask({ payload }) {
@@ -49,11 +53,11 @@ function* createTask({ payload }) {
 }
 
 function* watchCreateTask() {
+    console.log('create')
     yield takeEvery(ADD_NEW_TASK, createTask);
 }
 
 function* updateTask({ payload }) {
-    console.log(payload)
     const res = yield call(requestUpdateTask, payload);
     const { result, message } = res.data;
     console.log(result)
@@ -82,11 +86,25 @@ function* watchDeleteTask() {
     yield takeEvery(DELETE_TASK, deleteTask)
 }
 
+function* sortTask({ payload }) {
+    const res = yield call(requestSortTask, payload.update);
+    console.log(res)
+    if (res.data.result.nModified === payload.update.length) {
+        yield put(sortTasksSuccess(payload));
+    } 
+
+}
+
+function* watchSortTask() {
+    yield takeEvery(SORT_TASK, sortTask);
+}
+
 export default function* rootSaga(){
     yield all([
         yield fork(watchGetListTask),
         yield fork(watchCreateTask),
         yield fork(watchUpdateTask),
         yield fork(watchDeleteTask),
+        yield fork(watchSortTask),
     ])
 }

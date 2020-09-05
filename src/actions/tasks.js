@@ -32,15 +32,17 @@ export const getListTaskSuccess = payload => {
 // }
 
 //thêm mới task
-export const addNewTask = ( task, position)=>({
-    type: taskConstants.ADD_NEW_TASK,
-    payload: { 
-        position,
-        ...task
-     }
-})
+export const addNewTask = (task, position) => {
+    return {
+        type: taskConstants.ADD_NEW_TASK,
+        payload: {
+            position,
+            ...task
+        }
+    }
+}
 
-export const addNewTaskSuccess = data =>({
+export const addNewTaskSuccess = data => ({
     type: taskConstants.ADD_NEW_TASK_SUCCESS,
     payload: data
 })
@@ -51,14 +53,14 @@ export const addNewTaskSuccess = data =>({
 // })
 
 // //sửa task
-export const getEditTask = (task)=>{
+export const getEditTask = (task) => {
     return {
         type: taskConstants.EDIT_TASK,
         payload: task
     }
 }
 
-export const actionEditTask = (task)=>({
+export const actionEditTask = (task) => ({
     type: taskConstants.ACTION_EDIT_TASK,
     payload: task
 })
@@ -68,7 +70,7 @@ export const editTaskSuccess = data => ({
     payload: data
 })
 
-export const editTaslFailed = error =>({
+export const editTaslFailed = error => ({
     type: taskConstants.EDIT_TASK_FAILED,
     payload: error
 })
@@ -90,10 +92,13 @@ export const deleteTaskSuccess = data => ({
 // })
 
 // //sắp xếp task (kéo thả)
-export const sortTasks = tasks => {
-    return{
+export const sortTasks = (result, tasks2) => {
+    return {
         type: taskConstants.SORT_TASK,
-        payload: tasks
+        payload: {
+            update: result,
+            tasks2
+        }
     }
 }
 
@@ -104,10 +109,10 @@ export const sortTasks = tasks => {
 //     }
 // }
 
-// export const sortTasksSuccess = data => ({
-//     type: taskConstants.SORT_TASK_SUCCESS,
-//     payload: data
-// })
+export const sortTasksSuccess = data => ({
+    type: taskConstants.SORT_TASK_SUCCESS,
+    payload: data
+})
 
 // export const sortTasksFailed = error =>({
 //     type: taskConstants.SORT_TASK_FAILED,
