@@ -1,6 +1,6 @@
 const rateLimit = require('express-rate-limit')
 const mongoose = require('mongoose')
-const express = require('express')
+import express, { Application, Response, Request } from 'express'
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const logger = require('morgan')
@@ -9,7 +9,7 @@ require('dotenv/config')
 
 const { routes } = require('./Routes')
 
-const app = express();
+const app: Application = express();
 app.use(cors())
 app.use(logger('dev'))
 app.use(bodyParser.json())
@@ -25,12 +25,12 @@ app.use('/api/user', routes.user)
 app.use('/api/tasks', routes.tasks)
 app.use('/api/tabs', routes.tabs)
 
-app.get('/', (req, res) => {
-  res.send({ message: 'connected' })
+app.get('/', (req: Request, res: Response):void => {
+  res.json({ message: 'connected' })
 })
 
-app.get('/:id', (req, res) => {
-  res.send(req.params.id)
+app.get('/:id', (req: Request, res: Response):void => {
+  res.json(req.params.id)
 })
 
 const options = {
@@ -40,8 +40,8 @@ const options = {
   useUnifiedTopology: true
 }
 
-const mongoUrl = 'mongodb://127.0.0.1:27017/todo-app'
-const port = process.env.BACKEND_PORT || 8000
+const mongoUrl: string = 'mongodb://127.0.0.1:27017/todo-app'
+const port: string = process.env.BACKEND_PORT || '8000'
 mongoose.connect(mongoUrl, options).then(async () => {
   try {
     app.listen(port, () => {

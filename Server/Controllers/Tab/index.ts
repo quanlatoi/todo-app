@@ -1,4 +1,5 @@
-const { userModel, tabModel } = require('../../Models')
+import { userModel, tabModel, } from '../../Models/index'
+import { MongooseDocument } from 'mongoose'
 
 async function getListTab(req, res) {
     try {
@@ -19,7 +20,7 @@ async function getListTab(req, res) {
 async function createTab(req, res) {
     const { _id } = res.local
     try {
-        const user = await userModel.findOne({ _id })
+        const user: MongooseDocument = await userModel.findOne({ _id })
         const { nameTab } = req.body
         const newTab = new tabModel({
             name: nameTab,

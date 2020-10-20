@@ -1,5 +1,7 @@
+import { Request, Response } from "express"
+
 const bcrypt = require('bcryptjs')
-const process = require('process')
+// const process = require('process')
 const path = require('path')
 const util = require('util')
 const fs = require('fs')
@@ -48,7 +50,12 @@ async function login(req, res) {
     }
 }
 
-async function register(req, res) {
+interface File {
+    name: string;
+    path: string;
+}
+
+async function register(req: Request, res: Response) {
     try {
         const { username, password, email } = req.body
         const user = await userModel.findOne({ username })
@@ -56,7 +63,10 @@ async function register(req, res) {
             message: 'found user'
         })
         const cwd = path.resolve(process.cwd(), 'Public')
-        let file = {}
+        let file: File = {
+            name: '',
+            path: '',
+        }
         if (req.file) {
             const originalNameSplit = req.file.originalname.split('.')
             const isExistDir = await existDir(path.resolve(cwd, 'image'))

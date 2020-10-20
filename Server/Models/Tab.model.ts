@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const TabSchema = new mongoose.Schema({
     name: {
@@ -17,4 +17,4 @@ const TabSchema = new mongoose.Schema({
 
 const Tab = mongoose.model('Tab', TabSchema);
 
-module.exports = Tab
+export { Tab }

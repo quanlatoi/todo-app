@@ -1,3 +1,4 @@
+import { Request, Response } from 'express';
 const util = require('util')
 const fs = require('fs')
 const path = require('path')
@@ -9,8 +10,8 @@ const existDir = util.promisify(fs.exists)
 const mkdir = util.promisify(fs.mkdir)
 const writeFile = util.promisify(fs.writeFile)
 
-async function getDetail(req, res) {
-    const { username, email, avatar } = res.local
+async function getDetail(req: Request, res: Response) {
+    const { username, email, avatar } = res.locals
     res.json({
         result: {
             username,
@@ -21,12 +22,20 @@ async function getDetail(req, res) {
     })
 }
 
-async function updateUser(req, res) {
+interface File {
+    name: string;
+    path: string;
+}
+
+async function updateUser(req: Request, res: Response) {
     try {
-        const { username } = res.local
+        const { username } = res.locals
         const { newUsername, newEmail } = req.body
         const cwd = path.resolve(process.cwd(), 'Public')
-        let file = {}
+        let file: File = {
+            name: '',
+            path: '',
+        }
         if (req.file) {
             const originalNameSplit = req.file.originalname.split('.')
             const isExistDir = await existDir(path.resolve(cwd, 'image'))
@@ -40,7 +49,7 @@ async function updateUser(req, res) {
             file.path = path.resolve(cwd, 'image')
             await writeFile(path.resolve(file.path, file.name), req.file.buffer)
         }
-        const newAvatar = file.name ? file.name : null
+        const newAvatar = file.name ? file.name : ''
         const newUser = userModel.findOneAndUpdate(username, {
             username: newUsername,
             email: newEmail,

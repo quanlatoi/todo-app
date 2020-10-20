@@ -1,11 +1,13 @@
-const express = require('express')
-const passport = require('passport')
+import passport from 'passport'
 
-const { jwtStrategy } = require('../Utils/jwt')
+const express = require('express')
+
+const { usePassport } = require('../Utils/jwt')
 const { verifyJWT } = require('../Middlewares/Verify_Jwt')
 const { createTab, updateTab, getListTab, deleteTab } = require('../Controllers/Tab')
 
-passport.use(jwtStrategy)
+// passport.use(jwtStrategy)
+usePassport()
 
 const router = express.Router()
 

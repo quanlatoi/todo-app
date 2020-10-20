@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+      "module": "commonjs",
+      "baseUrl": "./",
+      "outDir": "dist",
+      "target": "es6",
+      "moduleResolution": "node",
+      "esModuleInterop": true,
+      "lib": ["es5"],
+      "allowJs": true,
+      "forceConsistentCasingInFileNames": true,
+      "typeRoots": [
+        "./custom_typings",
+        "./node_modules/@types"
+      ]
+    },
+    "include": [
+      "./**/*.ts"
+    ],
+    "exclude": [
+      "./src"
+    ]
+  }

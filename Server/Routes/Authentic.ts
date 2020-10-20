@@ -1,5 +1,4 @@
 const express = require('express')
-const passport = require('passport')
 
 const { login, register } = require('../Controllers/Authentication/index')
 
